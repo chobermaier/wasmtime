@@ -233,7 +233,7 @@ impl Config {
                 InstanceAllocationStrategy::Pooling(_)
             ),
             compiler: match self.wasmtime.compiler_strategy {
-                CompilerStrategy::Cranelift => wasmtime_wast_util::Compiler::Cranelift,
+                CompilerStrategy::Cranelift => wasmtime_wast_util::Compiler::CraneliftNative,
                 CompilerStrategy::Winch => wasmtime_wast_util::Compiler::Winch,
             },
         }
@@ -576,7 +576,6 @@ impl WasmtimeConfig {
             // by Winch.
             self.signals_based_traps = true;
             self.table_lazy_init = true;
-            self.epoch_interruption = false;
             self.debug_info = false;
         }
 
